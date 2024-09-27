@@ -10,7 +10,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         fields = ['id', 'user_name', 'room', 'rating', 'comment', 'created_at']  # Ensure user_name is included here
 
     def get_user_name(self, obj):
-        # Concatenate first name and last name
+        # first name and last name Concatenate korteci
         return f"{obj.user.first_name} {obj.user.last_name}"
     
     def create(self, validated_data):

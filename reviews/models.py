@@ -12,7 +12,7 @@ STER_CHOICE = [
 
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    room = models.ForeignKey(Room, on_delete=models.CASCADE)  # Set null=True temporarily
+    room = models.ForeignKey(Room, on_delete=models.CASCADE)  
     rating = models.CharField(choices=STER_CHOICE, max_length=100)
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
