@@ -12,7 +12,7 @@ class Room(models.Model):
     room_type = models.CharField(max_length=50, choices=ROOM_TYPES)
     descirption=models.TextField()
     price_per_night = models.DecimalField(max_digits=10, decimal_places=2)
-    image=models.ImageField(upload_to='book/media/uploads/',blank=True,null=True)
+    image = models.CharField(max_length=255, blank=True, null=True)
     is_available = models.BooleanField(default=True)  
 
     def __str__(self):
