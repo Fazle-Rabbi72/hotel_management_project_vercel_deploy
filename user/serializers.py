@@ -15,16 +15,16 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
     def validate(self, attrs):
-        # Only validate password if it's provided
+        #password validation
         if 'password' in attrs or 'confirm_password' in attrs:
             if attrs.get('password') != attrs.get('confirm_password'):
                 raise serializers.ValidationError({"password": "Password fields didn't match."})
         return attrs
     def create(self, validated_data):
-        # Remove the confirm_password field from the validated data
+        # Remove the confirm_password 
         validated_data.pop('confirm_password')
 
-        # Create the user with the password
+        # user create 
         user = User.objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
@@ -35,17 +35,15 @@ class UserSerializer(serializers.ModelSerializer):
         return user
     
     def update(self, instance, validated_data):
-        # Handle password if it's being updated
-        password = validated_data.pop('password', None)
+        
+        password = validated_data.pop('password', None) #pesword delete kora hocce
         validated_data.pop('confirm_password', None)
 
-        # Update the instance with the remaining validated data
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
 
-        # If password is provided, set it
         if password:
-            instance.set_password(password)
+            instance.set_password(password) #notun password add kora hocce
 
         instance.save()
         return instance

@@ -3,11 +3,11 @@ from .models import Review
 from bookings.models import Booking
 
 class ReviewSerializer(serializers.ModelSerializer):
-    user_name = serializers.SerializerMethodField(read_only=True)  # Get the username from the user field
+    user_name = serializers.SerializerMethodField(read_only=True)  #for getting user name
 
     class Meta:
         model = Review
-        fields = ['id', 'user_name', 'room', 'rating', 'comment', 'created_at']  # Ensure user_name is included here
+        fields = ['id', 'user_name', 'room', 'rating', 'comment', 'created_at']  
 
     def get_user_name(self, obj):
         # first name and last name Concatenate korteci
@@ -18,7 +18,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         user = request.user
         room = validated_data['room']
 
-        # Check if the user has a confirmed booking for the room
+        # kono room bookig ace ki na seta check kora hocce
         if not Booking.objects.filter(user=user, room=room, status='Confirmed').exists():
             raise serializers.ValidationError("You can only leave a review after a confirmed booking.")
 

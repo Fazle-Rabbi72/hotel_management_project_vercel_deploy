@@ -8,7 +8,6 @@ from rest_framework.response import Response
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-     
     path('', include('user.urls')),           
     path('', include('hotel.urls')),          
     path('', include('rooms.urls')),           

@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import redirect
 from decimal import Decimal
 from rest_framework import viewsets,status
 from .models import User
@@ -71,7 +71,7 @@ class UserLoginApiView(APIView):
             if user:
                 token, _ = Token.objects.get_or_create(user=user)
                 login(request, user)
-                # Use 'user' directly instead of 'user.user'
+                
                 return Response({'token': token.key, 'user_id': user.id})
             else:
                 return Response({'error': "Invalid user for login .Please sign up!"}, status=400)
@@ -101,16 +101,16 @@ class DepositView(APIView):
             return Response({"error": "Deposit amount is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            # Convert deposit_amount to a Decimal and validate it
+           
             deposit_amount = Decimal(deposit_amount)
             if deposit_amount <= 0:
                 return Response({"error": "Deposit amount must be greater than zero."}, status=status.HTTP_400_BAD_REQUEST)
 
-            # Update user's balance
+            # Update users balance
             user.balance += deposit_amount
             user.save()
 
-            # Prepare email subject and body using template
+          
             email_subject = "Deposit Confirmation"
             email_body = render_to_string('deposit_confirmation_mail.html', {
                 'first_name': user.first_name,

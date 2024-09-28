@@ -19,16 +19,16 @@ class BookingViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         user = request.user
         
-        # Validate room existence
+        # Validate room existence check kora hocce
         try:
             room = Room.objects.get(id=request.data['room'])
         except Room.DoesNotExist:
             return Response({"error": "Room not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        # Convert price_per_night to Decimal
+        # convert  to Decimal price
         room_price_per_night = Decimal(room.price_per_night)
 
-        # Parse check-in and check-out dates
+        # check-in and check-out dates
         check_in_date_str = request.data['check_in_date']
         check_out_date_str = request.data['check_out_date']
         check_in_date = datetime.strptime(check_in_date_str, '%Y-%m-%d')
@@ -48,21 +48,21 @@ class BookingViewSet(viewsets.ModelViewSet):
         if existing_booking.exists():
             return Response({"error": "This room is already booked for the selected dates."}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Calculate total price
+        # total price calculate kora hocce!!
         num_nights = (check_out_date - check_in_date).days
         if num_nights <= 0:
             return Response({"error": "Invalid booking duration."}, status=status.HTTP_400_BAD_REQUEST)
 
         total_price = room_price_per_night * Decimal(num_nights)
 
-        # Check user balance
+        # for user valance check
         user_balance = Decimal(user.balance)
         if user_balance < total_price:
             return Response({"error": "Insufficient balance to make this booking."}, status=status.HTTP_400_BAD_REQUEST)
 
-        # Proceed with booking creation in a transaction
+        # transection and boooking create kora hocce
         with transaction.atomic():
-            serializer = self.get_serializer(data=request.data)
+            serializer = self.get_serializer(data=request.data) #valid data ki na check korbe
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)
             user.save()
