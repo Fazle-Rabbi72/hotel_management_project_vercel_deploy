@@ -74,7 +74,7 @@ class UserLoginApiView(APIView):
                 # Use 'user' directly instead of 'user.user'
                 return Response({'token': token.key, 'user_id': user.id})
             else:
-                return Response({'error': "Invalid Credentials"}, status=400)
+                return Response({'error': "Invalid user for login .Please sign up!"}, status=400)
         return Response(serializer.errors, status=400)
 
 class LogoutAPIview(APIView):

@@ -65,9 +65,6 @@ class BookingViewSet(viewsets.ModelViewSet):
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)
-
-            # Deduct user balance
-            user.balance -= total_price
             user.save()
 
         return Response({"message": "Booking created successfully!", "booking": serializer.data}, status=status.HTTP_201_CREATED)
