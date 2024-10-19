@@ -13,7 +13,8 @@ urlpatterns = [
     path('', include('rooms.urls')),           
     path('', include('bookings.urls')),      
     path('', include('reviews.urls')),        
-    path('', include('contact_us.urls')),        
+    path('', include('contact_us.urls')),
+    path('api/auth/',include('rest_framework.urls')),        
  
 ]
 

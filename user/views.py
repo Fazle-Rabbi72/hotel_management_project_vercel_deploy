@@ -1,4 +1,4 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect,render
 from decimal import Decimal
 from rest_framework import viewsets,status
 from .models import User
@@ -54,9 +54,11 @@ def active(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        return JsonResponse({'success': True, 'message': 'User activated successfully.'})
+        context = {'success': True, 'message': 'User activated successfully.'}
     else:
-        return JsonResponse({'success': False, 'message': 'Activation link is invalid.'})
+        context = {'success': False, 'message': 'Activation link is invalid.'}
+    
+    return render(request, 'activation_response.html', context)
   
 
 class UserLoginApiView(APIView):
