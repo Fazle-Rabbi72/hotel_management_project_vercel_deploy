@@ -59,7 +59,7 @@ def active(request, uidb64, token):
         context = {'success': False, 'message': 'Activation link is invalid.'}
     
     # Check if the request is AJAX
-    if request.is_ajax():
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
         return JsonResponse(context)
     return render(request, 'activation_response.html', context)
   
