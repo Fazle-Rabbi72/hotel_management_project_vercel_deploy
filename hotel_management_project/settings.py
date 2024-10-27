@@ -91,7 +91,7 @@ TEMPLATES = [
 
 
 
-WSGI_APPLICATION = 'hotel_management_project.wsgi.application'
+WSGI_APPLICATION = 'hotel_management_project.wsgi.app'
 
 
 # Database
