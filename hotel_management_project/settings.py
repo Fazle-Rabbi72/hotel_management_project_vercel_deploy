@@ -26,9 +26,14 @@ SECRET_KEY = 'django-insecure-jtx_g%s+d!4420&v531coxrue_6gl_-!#a*==o8lhmwn8c-(@z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = ["127.0.0.1", ".vercel.app"]
 # CSRF_TRUSTED_ORIGINS = ['https://natures-paradise-stlb.onrender.com','https://*.127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+=======
+ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ['https://natures-paradise-stlb.onrender.com','https://*.127.0.0.1']
+>>>>>>> b989cd0d317d95a9e4fa5e8e3e949043d15b24a9
 AUTH_USER_MODEL = "user.User"
 
 CORS_ALLOWED_ORIGINS = [
@@ -90,7 +95,7 @@ TEMPLATES = [
 
 
 
-WSGI_APPLICATION = 'hotel_management_project.wsgi.app'
+WSGI_APPLICATION = 'hotel_management_project.wsgi.application'
 
 
 # Database
@@ -141,7 +146,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
