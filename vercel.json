@@ -1,10 +1,13 @@
 {
-  "version": 2,
-  "public": true,
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "hotel_management_project/wsgi.py"
-    }
-  ]
+    "builds": [{
+      "src": "hotel_management_project/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb", "runtime": "python3.12.6" }
+    }],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "hotel_management_project/wsgi.py"
+      }
+    ]
 }
