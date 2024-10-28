@@ -27,8 +27,7 @@ SECRET_KEY = 'django-insecure-jtx_g%s+d!4420&v531coxrue_6gl_-!#a*==o8lhmwn8c-(@z
 DEBUG = True
 
 
-ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://natures-paradise-stlb.onrender.com','https://*.127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 AUTH_USER_MODEL = "user.User"
 
@@ -91,7 +90,7 @@ TEMPLATES = [
 
 
 
-WSGI_APPLICATION = 'hotel_management_project.wsgi.application'
+WSGI_APPLICATION = 'hotel_management_project.wsgi.app'
 
 
 # Database
