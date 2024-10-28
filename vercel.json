@@ -1,13 +1,18 @@
 {
-    "builds": [{
-        "src": "hotel_management_project/wsgi.py",
-        "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
-    }],
+    "version": 2,
+    "functions": {
+      "api/*": {
+        "runtime": "@vercel/python",
+        "maxDuration": 10,
+        "memory": 1024,
+        "handler": "hotel_management_project.asgi.application"
+      }
+    },
     "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "hotel_management_project/wsgi.py"
- }
-]
-}
+      {
+        "src": "/(.*)",
+        "dest": "api/index.py"
+      }
+    ]
+  }
+  
