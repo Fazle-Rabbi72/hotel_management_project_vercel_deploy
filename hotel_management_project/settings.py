@@ -141,6 +141,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'book/media/uploads/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
